@@ -72,7 +72,7 @@ uint16_t Adafruit_BMP085::readRawTemperature(void) {
   write8(BMP085_CONTROL, BMP085_READTEMPCMD);
   delay(5);
 #if BMP085_DEBUG == 1
-  Serial.print("Raw temp: "); Serial.println(read16(BMP085_TEMPDATA));
+//  Serial.print("Raw temp: "); Serial.println(read16(BMP085_TEMPDATA));
 #endif
   return read16(BMP085_TEMPDATA);
 }
