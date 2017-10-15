@@ -18,6 +18,9 @@
 #ifndef ADAFRUIT_BMP085_H
 #define ADAFRUIT_BMP085_H
 
+#include "Arduino.h"
+#include "Wire.h"
+
 #define BMP085_DEBUG 0
 
 #define BMP085_I2CADDR 0x77

@@ -15,8 +15,6 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
-#include "Arduino.h"
-#include "Wire.h"
 #include "Adafruit_BMP085.h"
 
 Adafruit_BMP085::Adafruit_BMP085() {
@@ -46,19 +44,19 @@ boolean Adafruit_BMP085::begin(uint8_t mode) {
   mc = read16(BMP085_CAL_MC);
   md = read16(BMP085_CAL_MD);
 #if (BMP085_DEBUG == 1)
-  Serial.print("ac1 = "); Serial.println(ac1, DEC);
-  Serial.print("ac2 = "); Serial.println(ac2, DEC);
-  Serial.print("ac3 = "); Serial.println(ac3, DEC);
-  Serial.print("ac4 = "); Serial.println(ac4, DEC);
-  Serial.print("ac5 = "); Serial.println(ac5, DEC);
-  Serial.print("ac6 = "); Serial.println(ac6, DEC);
-
-  Serial.print("b1 = "); Serial.println(b1, DEC);
-  Serial.print("b2 = "); Serial.println(b2, DEC);
-
-  Serial.print("mb = "); Serial.println(mb, DEC);
-  Serial.print("mc = "); Serial.println(mc, DEC);
-  Serial.print("md = "); Serial.println(md, DEC);
+  // Serial.print("ac1 = "); Serial.println(ac1, DEC);
+  // Serial.print("ac2 = "); Serial.println(ac2, DEC);
+  // Serial.print("ac3 = "); Serial.println(ac3, DEC);
+  // Serial.print("ac4 = "); Serial.println(ac4, DEC);
+  // Serial.print("ac5 = "); Serial.println(ac5, DEC);
+  // Serial.print("ac6 = "); Serial.println(ac6, DEC);
+  //
+  // Serial.print("b1 = "); Serial.println(b1, DEC);
+  // Serial.print("b2 = "); Serial.println(b2, DEC);
+  //
+  // Serial.print("mb = "); Serial.println(mb, DEC);
+  // Serial.print("mc = "); Serial.println(mc, DEC);
+  // Serial.print("md = "); Serial.println(md, DEC);
 #endif
 
   return true;
@@ -108,7 +106,7 @@ uint32_t Adafruit_BMP085::readRawPressure(void) {
  */
 
 #if BMP085_DEBUG == 1
-  Serial.print("Raw pressure: "); Serial.println(raw);
+  // Serial.print("Raw pressure: "); Serial.println(raw);
 #endif
   return raw;
 }
@@ -141,9 +139,9 @@ int32_t Adafruit_BMP085::readPressure(void) {
   B5 = computeB5(UT);
 
 #if BMP085_DEBUG == 1
-  Serial.print("X1 = "); Serial.println(X1);
-  Serial.print("X2 = "); Serial.println(X2);
-  Serial.print("B5 = "); Serial.println(B5);
+  // Serial.print("X1 = "); Serial.println(X1);
+  // Serial.print("X2 = "); Serial.println(X2);
+  // Serial.print("B5 = "); Serial.println(B5);
 #endif
 
   // do pressure calcs
@@ -154,10 +152,10 @@ int32_t Adafruit_BMP085::readPressure(void) {
   B3 = ((((int32_t)ac1*4 + X3) << oversampling) + 2) / 4;
 
 #if BMP085_DEBUG == 1
-  Serial.print("B6 = "); Serial.println(B6);
-  Serial.print("X1 = "); Serial.println(X1);
-  Serial.print("X2 = "); Serial.println(X2);
-  Serial.print("B3 = "); Serial.println(B3);
+  // Serial.print("B6 = "); Serial.println(B6);
+  // Serial.print("X1 = "); Serial.println(X1);
+  // Serial.print("X2 = "); Serial.println(X2);
+  // Serial.print("B3 = "); Serial.println(B3);
 #endif
 
   X1 = ((int32_t)ac3 * B6) >> 13;
@@ -167,10 +165,10 @@ int32_t Adafruit_BMP085::readPressure(void) {
   B7 = ((uint32_t)UP - B3) * (uint32_t)( 50000UL >> oversampling );
 
 #if BMP085_DEBUG == 1
-  Serial.print("X1 = "); Serial.println(X1);
-  Serial.print("X2 = "); Serial.println(X2);
-  Serial.print("B4 = "); Serial.println(B4);
-  Serial.print("B7 = "); Serial.println(B7);
+  // Serial.print("X1 = "); Serial.println(X1);
+  // Serial.print("X2 = "); Serial.println(X2);
+  // Serial.print("B4 = "); Serial.println(B4);
+  // Serial.print("B7 = "); Serial.println(B7);
 #endif
 
   if (B7 < 0x80000000) {
@@ -183,14 +181,14 @@ int32_t Adafruit_BMP085::readPressure(void) {
   X2 = (-7357 * p) >> 16;
 
 #if BMP085_DEBUG == 1
-  Serial.print("p = "); Serial.println(p);
-  Serial.print("X1 = "); Serial.println(X1);
-  Serial.print("X2 = "); Serial.println(X2);
+  // Serial.print("p = "); Serial.println(p);
+  // Serial.print("X1 = "); Serial.println(X1);
+  // Serial.print("X2 = "); Serial.println(X2);
 #endif
 
   p = p + ((X1 + X2 + (int32_t)3791)>>4);
 #if BMP085_DEBUG == 1
-  Serial.print("p = "); Serial.println(p);
+  // Serial.print("p = "); Serial.println(p);
 #endif
   return p;
 }
