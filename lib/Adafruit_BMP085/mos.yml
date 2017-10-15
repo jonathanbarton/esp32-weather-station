@@ -1,0 +1,23 @@
+author: mongoose-os
+description: Arduino Adafruit BMP085 library
+type: lib
+version: 1.0
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+sources:
+  - .
+includes:
+  - .
+libs:
+  - origin: https://github.com/mongoose-os-libs/arduino-compat
+  - origin: https://github.com/mongoose-os-libs/arduino-wire
+
+tags:
+  - arduino
+  - c
+  - js
+  - hw
+
+manifest_version: 2017-05-18
